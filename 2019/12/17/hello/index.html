@@ -7,15 +7,15 @@
   
   <title>hello | cxx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="，撒谎首次尝试的编辑次数">
+  <meta name="description" content="GitHub创建个人仓库首先，你先要有一个GitHub账户，去注册一个吧。注册完登录后，在GitHub.com中看到一个New repository，新建仓库时创建一个和你用户名相同的仓库，yourusername.github.io，只有这样，将来要部署到GitHub page的时候，才会被识别，也就是xxxx.github.io，其中xxx就是你注册GitHub的用户名。我这里是已经建过了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hello">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;17&#x2F;hello&#x2F;index.html">
 <meta property="og:site_name" content="cxx">
-<meta property="og:description" content="，撒谎首次尝试的编辑次数">
+<meta property="og:description" content="GitHub创建个人仓库首先，你先要有一个GitHub账户，去注册一个吧。注册完登录后，在GitHub.com中看到一个New repository，新建仓库时创建一个和你用户名相同的仓库，yourusername.github.io，只有这样，将来要部署到GitHub page的时候，才会被识别，也就是xxxx.github.io，其中xxx就是你注册GitHub的用户名。我这里是已经建过了。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-17T06:57:47.194Z">
-<meta property="article:modified_time" content="2019-12-17T08:21:27.317Z">
+<meta property="article:modified_time" content="2019-12-17T08:23:38.775Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -88,8 +88,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>，撒谎首次尝试的编辑次数</p>
+        <h1 id="GitHub创建个人仓库"><a href="#GitHub创建个人仓库" class="headerlink" title="GitHub创建个人仓库"></a>GitHub创建个人仓库</h1><p>首先，你先要有一个GitHub账户，去注册一个吧。注册完登录后，在GitHub.com中看到一个New repository，新建仓库时创建一个和你用户名相同的仓库，yourusername.github.io，只有这样，将来要部署到GitHub page的时候，才会被识别，也就是xxxx.github.io，其中xxx就是你注册GitHub的用户名。我这里是已经建过了。</p>
+<h1 id="生成SSH添加到Github"><a href="#生成SSH添加到Github" class="headerlink" title="生成SSH添加到Github"></a>生成SSH添加到Github</h1><p>在你的Git Bash中(打开桌面图标)输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git config --global user.name &quot;yourusername&quot;git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
 
+<p>这里的yourusername就是你Github的用户名 邮箱就是注册Github的邮箱</p>
+<p>然后创建ssh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C &quot;youremail&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后连续按三个回车即可，然后依次进入C盘 用户(User) 你的电脑用户名文件夹 .ssh文件夹，可以看到两个文件</p>
+<p>ssh，简单来讲，就是一个秘钥，其中，id_rsa是你这台电脑的私人秘钥，不能给别人看的，id_rsa.pub是公共秘钥，可以随便给别人看。把这个公钥放在GitHub上，这样当你链接GitHub自己的账户时，它就会根据公钥匹配你的私钥，当能够相互匹配时，才能够顺利的通过git上传你的文件到GitHub上。</p>
+<p>而后在GitHub的setting中，找到SSH keys的设置选项，点击New SSH key<br>把你的id_rsa.pub里面的信息复制进去。</p>
+<h1 id="将Hexo部署到Github"><a href="#将Hexo部署到Github" class="headerlink" title="将Hexo部署到Github"></a>将Hexo部署到Github</h1><p>进入Myblog文件夹，打开_config.yml文件，后面统称站点配置文件，翻到最后(注意在这些配置文件中xxx: yyy的形式中，冒号后都有一个空格)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">deploy:  type: git  repo: https:&#x2F;&#x2F;github.com&#x2F;YourgithubName&#x2F;YourgithubName.github.io.git  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>这里的YourgithubName就改成你的Github用户名即可</p>
+<p>然后还是在Git Bash中（注意都是在Myblog中打开）输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install hexo-deployer-g</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
