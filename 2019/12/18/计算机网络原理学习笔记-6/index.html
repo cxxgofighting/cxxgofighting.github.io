@@ -79,14 +79,22 @@
 
 
 
+<meta name="description" content="学习这学期的计算机网络原理，加深了我对网络基础知识的理解，现在让我来把一些知识点简单整理一下。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络原理学习笔记(6)">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-6&#x2F;index.html">
 <meta property="og:site_name" content="cxx">
+<meta property="og:description" content="学习这学期的计算机网络原理，加深了我对网络基础知识的理解，现在让我来把一些知识点简单整理一下。">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180318105536433">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;201803181206518?watermark&#x2F;2&#x2F;text&#x2F;Ly9ibG9nLmNzZG4ubmV0L2tuaWdodDE4NDA&#x3D;&#x2F;font&#x2F;5a6L5L2T&#x2F;fontsize&#x2F;400&#x2F;fill&#x2F;I0JBQkFCMA&#x3D;&#x3D;&#x2F;dissolve&#x2F;70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180318121840677">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180318122211351">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180318122704250">
 <meta property="article:published_time" content="2019-12-18T07:41:18.000Z">
-<meta property="article:modified_time" content="2019-12-18T07:41:18.313Z">
+<meta property="article:modified_time" content="2019-12-18T09:32:16.043Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180318105536433">
 
 
 
@@ -296,7 +304,43 @@
       
 
       
-        
+        <p>学习这学期的计算机网络原理，加深了我对网络基础知识的理解，现在让我来把一些知识点简单整理一下。</p>
+<a id="more"></a>
+
+<h1 id="计算机网络体系结构："><a href="#计算机网络体系结构：" class="headerlink" title="计算机网络体系结构："></a>计算机网络体系结构：</h1><p>网络体系结构：OSI模型（左边），TCP/IP模型（右边）</p>
+<p><img src="https://img-blog.csdn.net/20180318105536433" alt=""></p>
+<p>按照我的理解</p>
+<p>1.每一层有对应的作用；</p>
+<p>2.每一层有对应的规程和协议，用来解决对应的问题；</p>
+<p>3.向下一层对向上一层的作用是透明的；</p>
+<p>第一层：物理层（PhysicalLayer)</p>
+<p>规定通信设备的机械的、电气的、功能的和规程的特性，用以建立、维护和拆除物理链路连接。具体地讲，机械特性规定了网络连接时所需接插件的规格尺寸、引脚数量和排列情况等；电气特性规定了在物理连接上传输bit流时线路上信号电平的大小、阻抗匹配、传输速率距离限制等；功能特性是指对各个信号先分配确切的信号含义，即定义了DTE和DCE之间各个线路的功能；规程特性定义了利用信号线进行bit流传输的一组操作规程，是指在物理连接的建立、维护、交换信息时，DTE和DCE双方在各电路上的动作系列。</p>
+<p><strong>在这一层，数据的单位称为比特（bit）</strong>。<br>物理层下的传输媒体：<br>双绞线：最古老的传输媒体，模拟信号和数字信号都可以传输，传输距离短。<br>同轴电缆：抗干扰特性，广泛用于传输较高速率的数据。<br>光缆：传输速率高，距离远，抗雷电和抗电磁干扰性好，无串音干扰，保密性好，体积好，重量轻。</p>
+<p>物理层的主要设备：中继器、集线器、适配器。</p>
+<p>第二层：数据链路层（DataLinkLayer)<br>在物理层提供比特流服务的基础上，建立相邻结点之间的数据链路，通过差错控制提供数据帧（Frame）在信道上无差错的传输，并进行各电路上的动作系列。<br>数据链路层在不可靠的物理介质上提供可靠的传输。该层的作用包括：物理地址寻址、数据的成帧、流量控制、数据的检错、重发等。<br>在这一层，数据的单位称为帧（frame）。</p>
+<p>数据链路层主要设备：二层交换机、网桥</p>
+<p><img src="https://img-blog.csdn.net/201803181206518?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L2tuaWdodDE4NDA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p>封装成帧：在一段数据前后加上首部和尾部，这样就构成了一个帧。接收端根据首部和尾部的标记从收到的比特流这哦那个识别帧的开始和结束。</p>
+<p>帧的最大传输单元（MTU）:数据链路层有定义帧的数据部分的最大长度上限叫做最大传输单元。</p>
+<p>透明传输：防止数据中出现帧的开始结束标识符，对特殊标识符进行转义（使用ESC）。</p>
+<p>差错校验：防止数据出错，常用的方法有，循环冗余校验(CRC)在数据后添加冗余码（FCS）用来做检验。</p>
+<p><img src="https://img-blog.csdn.net/20180318121840677" alt=""></p>
+<p>PPP协议</p>
+<p>PPP采用7EH作为一帧的开始和结束标志（F）；其中地址域（A）和控制域（C）取固定值（A=FFH，C=03H） ；协议域（两个字节）取0021H表示IP分组，取8021H表示网络控制数据，取C021H表示链路控制数据；帧校验域（FCS）也为两个字节，它用于对信息域的校验。若信息域中出现7EH，则转换为（7DH，5EH）两个字符。当信息域出现7DH时，则转换为（7DH，5DH）。当信息流中出现ASCII码的控制字符（即小于20H），即在该字符前加入一个7DH字符。</p>
+<p><img src="https://img-blog.csdn.net/20180318122211351" alt="img"> </p>
+<p>（1）PPP具有动态分配IP地址的能力，允许在连接时刻协商IP地址；</p>
+<p>（2）PPP支持多种网络协议，比如TCP/IP、NetBEUI、NWLINK等；</p>
+<p>（3）PPP具有错误检测以及纠错能力，支持数据压缩；</p>
+<p>（4）PPP具有身份验证功能。</p>
+<p>（5） PPP可以用于多种类型的物理介质上，包括串口线、电话线、移动电话和光纤（例如SDH），PPP也用于Internet接入。</p>
+<p>CSMA/CD<br>CSMA/CD网络上进行传输时，必须按下列五个步骤来进行<br>（1）传输前监听<br>（2）如果忙则等待<br>（3）如果空闲则传输并检测冲突<br>（4）如果冲突发生，重传前等待</p>
+<p>（5）重传或夭折</p>
+<p>MAC帧的格式：</p>
+<p><img src="https://img-blog.csdn.net/20180318122704250" alt=""></p>
+<p>网桥：过滤通信，增大吞吐量；扩大物理范围；提高可靠性；可互联不同MAC子层。</p>
+<p>透明网桥：继承网桥能力，自学习转发表，不用配置地址。</p>
+<p>多借口网桥（以太网交换机）：隔离冲突域，每台设备独立冲突域。</p>
+
       
     </div>
     
@@ -329,6 +373,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E6%80%BB%E7%BB%93/" rel="prev" title="计算机网络原理总结">
+                计算机网络原理总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -380,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -400,7 +457,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -427,6 +484,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构："><span class="nav-number">1.</span> <span class="nav-text">计算机网络体系结构：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
