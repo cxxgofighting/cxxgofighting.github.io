@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="description" content="从发送主机向接受主机传送数据段（segment）。每个主机和路由器都运行网络层协议。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;16&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="计算机网络原理学习笔记（3）：网络层（上）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)&#x2F;index.html">
 <meta property="og:site_name" content="cxx">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="article:published_time" content="2019-12-16T12:29:46.076Z">
-<meta property="article:modified_time" content="2019-12-18T06:36:49.112Z">
+<meta property="og:description" content="从发送主机向接受主机传送数据段（segment）。每个主机和路由器都运行网络层协议。">
+<meta property="article:published_time" content="2019-12-18T07:40:14.000Z">
+<meta property="article:modified_time" content="2019-12-19T07:17:19.327Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/16/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/12/18/计算机网络原理学习笔记(3)/"/>
 
 
 
 
 
-  <title>Hello World | cxx</title>
+  <title>计算机网络原理学习笔记（3）：网络层（上） | cxx</title>
   
 
 
@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -248,7 +248,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">计算机网络原理学习笔记（3）：网络层（上）</h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T20:29:46+08:00">
-                2019-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T15:40:14+08:00">
+                2019-12-18
               </time>
             
 
@@ -298,21 +298,56 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p> 从发送主机向接受主机传送数据段（segment）。每个主机和路由器都运行网络层协议。 </p>
 <a id="more"></a>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h1 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h1><h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><p>以太网通常只包括OSI体系结构的数据链路层和物理层两层。</p>
+<h2 id="CSMA／CD协议"><a href="#CSMA／CD协议" class="headerlink" title="CSMA／CD协议"></a>CSMA／CD协议</h2><p><strong>工作原理：</strong>网中的各个站（节点）都能独立地决定数据帧的发送与接收。每个站在发送数据帧之前，首先要进行载波监听，只有介质空闲时，才允许发送帧。这时，如果两个以上的站同时监听到介质空闲并发送帧，则会产生冲突现象，这使发送的帧都成为无效帧，发送随即宣告失败。每个站必须有能力随时检测冲突是否发生，一旦发生冲突，则应停止发送，以免介质带宽因传送无效帧而被白白浪费，然后随机延时一段时间后，再重新争用介质，重发送帧。CSMA/CD协议简单、可靠，其网络系统（如Ethernet）被广泛使用。以上原理可以通俗理解为：“先听后说，边说边听”。</p>
+<p>CSMA／CD采用曼彻斯特编码（每比特中间有跳变，先高后低代表“1”）来检测冲突。</p>
+<p>若有冲突则要重发，采取<strong>截断二进制指数类型(truncated binary exponential type)的退避算法</strong>，决定重传帧所需的时延Delay。</p>
+<h2 id="以太网的MAC层"><a href="#以太网的MAC层" class="headerlink" title="以太网的MAC层"></a>以太网的MAC层</h2><p><strong>MAC地址：</strong>即主机在网络中的站地址或物理地址，这由MAC帧负责传送。</p>
+<p><strong>MAC帧分为三类：</strong>单播帧，广播帧，多播帧。</p>
+<p>MAC帧最短长度为<strong>512bit</strong>。</p>
+<h2 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h2><p>网桥工作在链路层，知道MAC帧结构。</p>
+<p><strong>逆向学习法</strong>：网桥把所有帧都收进来，每收到一个帧，就在站表中登记以下三个信息（如果站地址及端口已登记，则仅修改时间）,逆向学习法：</p>
+<ul>
+<li>站地址  登记收到的帧的源MAC地址。</li>
+<li>端口  登记收到的帧进入该网桥的端口号。</li>
+<li>时间  登记收到的帧进入该网桥的时间</li>
+</ul>
+<p>*<em>多端口网桥——以太网交换机 *</em>：</p>
+<p>转发方式：</p>
+<ul>
+<li>存储转发方式：将整个数据帧先缓存再进行转发。延迟较大。</li>
+<li>直通(cut-through)交换方式：不必将整个数据帧先缓存再进行处理，而是在接收到数据帧首部的目的MAC地址后就立即按目的地址决定该帧的转发端口。其交换时延可做到仅为30μs左右。<ul>
+<li>优点：快速</li>
+<li>缺点：不检查CRC就直接将帧转发出去，因此有可能将一些无效帧转发给其他的站。较少发生。</li>
+</ul>
+</li>
+</ul>
+<h1 id="广域网"><a href="#广域网" class="headerlink" title="广域网"></a>广域网</h1><h2 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h2><ul>
+<li>广域网：当计算机之间的距离较远时，例如，相隔几十或几百公里，或甚至几千公里，局域网显然就无法完成计算机之间的通信任务。这时就需要另一种结构的网络，即广域网。</li>
+<li>拥塞控制是一个全局性的过程，涉及到所有的主机、所有的路由器，入网出网的流量，以及与降低网络传输性能有关的所有因素。</li>
+<li>流量控制往往指在给定的发送端和接收端之间的点对点通信量。流量控制所要做的就是使发送端发送数据的速率不能使接收端来不及接收。流量控制几乎总是存在着从接收端到发送端的某种直接反馈，使发送端知道接收端是处于怎样的状况。</li>
+<li>网络负载(offered load)，代表单位时间内输入给网络的分组数目，也称输入负载。</li>
+<li>吞吐量(throughput)，代表单位时间内从网络输出的分组数目</li>
+</ul>
+<h2 id="网络层-所提供的两种服务"><a href="#网络层-所提供的两种服务" class="headerlink" title="网络层 所提供的两种服务"></a>网络层 所提供的两种服务</h2><ul>
+<li>无连接的网络服务(数据报服务)</li>
+<li>面向连接的网络服务(虚电路服务)</li>
+</ul>
+<p><strong>永久虚电路（PVC–Permanent Virtual Circuit）</strong>：在经常需要进行通信的两个DTE之间可以建立永久虚电路。这很像电话网中的专线电话，它不需要每次先拨号再通话。<br><strong>交换虚电路（SVC–Switched VC)</strong>：先呼叫，建立连接，再传数据，管理相对复杂，用得较少。</p>
+<h1 id="帧中继"><a href="#帧中继" class="headerlink" title="帧中继"></a>帧中继</h1><p>帧中继网络通常是为相隔较远的一些局域网提供链路层的永久虚电路服务。</p>
+<h2 id="帧格式"><a href="#帧格式" class="headerlink" title="帧格式"></a>帧格式</h2><ul>
+<li>标志字段：01111110， 使用比特填充法</li>
+<li>信息字段:可以是长度可变的用户数据（例如IP数据报）。</li>
+<li>地址字段   一般为2字节，但也可扩展为3或4字节。</li>
+<li>帧检验序列</li>
+</ul>
+<h2 id="帧中继拥塞控制方法"><a href="#帧中继拥塞控制方法" class="headerlink" title="帧中继拥塞控制方法"></a>帧中继拥塞控制方法</h2><ul>
+<li>丢弃策略。当拥塞足够严重时，网络就要被迫将帧丢弃。这是网络对拥塞的最基本的响应。</li>
+<li>拥塞避免。在刚一出现轻微的拥塞迹象时可采取拥塞避免的方法。</li>
+</ul>
 
       
     </div>
@@ -337,14 +372,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/" rel="next" title="计算机网络原理学习笔记(2)">
+                <i class="fa fa-chevron-left"></i> 计算机网络原理学习笔记(2)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/12/17/%E7%94%A8hexo+github%E6%90%AD%E8%BD%BD%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="用hexo+github搭载个人博客">
-                用hexo+github搭载个人博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)/" rel="prev" title="计算机网络原理学习笔记(4)：网络层（下）">
+                计算机网络原理学习笔记(4)：网络层（下） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,7 +502,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#局域网"><span class="nav-number">1.</span> <span class="nav-text">局域网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#以太网"><span class="nav-number">1.1.</span> <span class="nav-text">以太网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSMA／CD协议"><span class="nav-number">1.2.</span> <span class="nav-text">CSMA／CD协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太网的MAC层"><span class="nav-number">1.3.</span> <span class="nav-text">以太网的MAC层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网桥"><span class="nav-number">1.4.</span> <span class="nav-text">网桥</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#广域网"><span class="nav-number">2.</span> <span class="nav-text">广域网</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念："><span class="nav-number">2.1.</span> <span class="nav-text">概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层-所提供的两种服务"><span class="nav-number">2.2.</span> <span class="nav-text">网络层 所提供的两种服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#帧中继"><span class="nav-number">3.</span> <span class="nav-text">帧中继</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#帧格式"><span class="nav-number">3.1.</span> <span class="nav-text">帧格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帧中继拥塞控制方法"><span class="nav-number">3.2.</span> <span class="nav-text">帧中继拥塞控制方法</span></a></li></ol></li></ol></div>
             
 
           </div>

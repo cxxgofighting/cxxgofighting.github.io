@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1  域名系统和DNS域名通俗来讲就是网络上每个网址（或邮件服务等其他服务）的名称，全球唯一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络原理学习笔记(5):应用层">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)&#x2F;index.html">
+<meta property="og:site_name" content="cxx">
+<meta property="og:description" content="1  域名系统和DNS域名通俗来讲就是网络上每个网址（或邮件服务等其他服务）的名称，全球唯一。">
+<meta property="article:published_time" content="2019-12-18T07:41:07.000Z">
+<meta property="article:modified_time" content="2019-12-19T07:52:13.955Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/18/计算机网络原理学习笔记(5)/"/>
+
+
+
+
+
+  <title>计算机网络原理学习笔记(5):应用层 | cxx</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cxx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cxx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络原理学习笔记(5):应用层</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T15:41:07+08:00">
+                2019-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-域名系统和DNS"><a href="#1-域名系统和DNS" class="headerlink" title="1  域名系统和DNS"></a><strong>1  域名系统和DNS</strong></h1><p>域名通俗来讲就是网络上每个网址（或邮件服务等其他服务）的名称，全球唯一。</p>
+<a id="more"></a>
+
+<p>域名结构<br>根 .（是个点）<br>顶级域名 com edu net cn org gov<br>二级域名 inhe baidu 自己花钱买注册的。<br>三级域名 www mail ftp 跟不同服务相关的。这些是常用的一些三级域名，可以自己改。<br>购买了一个域名，如 xueit.com，一年100块钱，那么这个域名下的所有三级域名也都归我所有，如我的网页 <a href="http://www.xueit.com，我的邮件服务" target="_blank" rel="noopener">www.xueit.com，我的邮件服务</a> mail.xueit.com，… …<br>注意：xueit.com是域名，而 <a href="http://www.xueit.com中的www叫主机名。" target="_blank" rel="noopener">www.xueit.com中的www叫主机名。</a></p>
+<p>域名解析测试命令<br>先输入nslookup查看本机DNS，再输入要解析的域名<a href="http://www.xueit.com，返回该域名的IP地址。" target="_blank" rel="noopener">www.xueit.com，返回该域名的IP地址。</a></p>
+<p><strong>域名解析过程</strong></p>
+<p>客户机先向本地域名服务器B提出请求：搜狐的IP地址是多少？B一看，它不负责.com部分，于是向根域名服务器提出请求：搜狐的IP地址是多少？根域名服务器一看，.com部分是C域名服务器负责，于是把C的地址返回给B，B再向C提出请求：搜狐的IP地址是多少？C一看，自己虽然负责.com，但是没有搜狐，搜狐在E里保存着呢，于是把E的地址返回给B，B再向E提出请求：搜狐的IP地址是多少？E一看，自己这里正好有搜狐的IP，把结果返回给B，B拿到了搜狐的IP后缓存到自己的缓存区，然后返回给客户机。这时客户机2向B提出请求：搜狐的IP地址是多少？由于B中有缓存，B直接把结果返回给客户机2</p>
+<h1 id="2-DHCP服务"><a href="#2-DHCP服务" class="headerlink" title="2 DHCP服务"></a>2 DHCP服务</h1><p>动态主机配置协议 DHCP：负责给互联网上的计算机提供动态的IP地址。<br>连接到因特网的计算机都需要配置以下几个项目：</p>
+<ul>
+<li>IP 地址</li>
+<li>子网掩码</li>
+<li>默认路由器的 IP 地址即网关</li>
+<li>域名服务器的 IP 地址 </li>
+</ul>
+<p>IP地址获取方式有两种，一种静态IP，一种动态IP。<br>静态IP是人工自己指定的，一般公司自己组建的局域网、学校机房的固定的计算机、机房服务器、互联网上的大型服务器，凡是位置固定不动的，都用静态IP地址。<br>动态IP地址是用DHCP服务器来分配的地址，适用于计算机位置不固定、家庭拨号上网等情况。可以避免产生IP地址冲突。</p>
+<p><strong>DHCP客户端请求IP地址的过程（逆arp协议）</strong><br>需要地址的客户机先在网上发广播包请求地址，DHCP服务器收到广播包后在自己的地址池里选一个地址（包括配套的子网掩码和网关），租给该客户机，该客户机再给DHCP服务器一个确认。<br>注意：DHCP服务器本身必须是静态地址！</p>
+<p>DHCP服务器既可以给本网段计算机分配地址，也可以跨网段分配地址。DHCP服务器想给几个网段的计算机分配地址，就得先创建几个作用域。区别是，本网段的计算机请求地址，发广播，DHCP服务器能直接收到请求；而外网段的计算机请求地址，先发广播让外网段的网关收到（网关隔绝广播，为了能使这条请求发出去，路由器上需要特殊配置一下Router(config-if)#ip helper-address 192.168.0.100这个IP是DHCP服务器地址），该网关把请求通过互联网发送给DHCP服务器（这时候就是点对点通信而不是广播了）。</p>
+<h1 id="3-FTP文件传送服务"><a href="#3-FTP文件传送服务" class="headerlink" title="3  FTP文件传送服务"></a>3  FTP文件传送服务</h1><h3 id="1-FTP连接方式"><a href="#1-FTP连接方式" class="headerlink" title="1 FTP连接方式"></a><strong>1 FTP连接方式</strong></h3><p>控制连接：标准端口为21，用于发送FTP命令信息。<br>数据连接：标准端口为20，用于上传、下载数据。</p>
+<h3 id="2-客户端选择数据连接的建立类型"><a href="#2-客户端选择数据连接的建立类型" class="headerlink" title="2 客户端选择数据连接的建立类型"></a><strong>2 客户端选择数据连接的建立类型</strong></h3><p>主动模式：FTP客户端告诉FTP服务器使用什么端口，FTP服务器就主动用自己的20端口和FTP客户端的这个端口建立连接。<br>被动模式：服务端在指定范围内打开一个新的端口，被动等待客户端发起连接。</p>
+<h3 id="3-FTP传输模式"><a href="#3-FTP传输模式" class="headerlink" title="3 FTP传输模式"></a><strong>3 FTP传输模式</strong></h3><p>文本模式：ASCII模式，以文本序列传输数据<br>二进制模式：Binary模式，以二进制序列传输数据<br>主动模式<br>主动模式防火墙打开21端口，用于客户端和服务器建立连接；打开20端口用于互相传输数据。</p>
+<p>被动模式<br>被动模式，FTP服务器打的是一个新端口，指不定是哪个端口呢，如上图是1234端口，如果想成功地进行数据通信，防火墙必须打开1234端口；如果还有其他的客户端请求连接服务器，服务器又打开其他新的端口，那么防火墙又得打开另一个新的端口了，十分不方便。因此，FTP服务一般都使用主动模式。</p>
+<h3 id="4-远程终端协议TELNET"><a href="#4-远程终端协议TELNET" class="headerlink" title="4  远程终端协议TELNET"></a><strong>4  远程终端协议TELNET</strong></h3><p>只要网络通，就能利用telnet输入命令来远程控制另一台计算机。一般多用来远程配置路由器。使用TCP的23端口。</p>
+<h3 id="5-远程桌面协议RDP"><a href="#5-远程桌面协议RDP" class="headerlink" title="5  远程桌面协议RDP"></a><strong>5  远程桌面协议RDP</strong></h3><p>它和远程终端协议的功能一样，都是为了远程管理另一台计算机，只不过上面那个telnet通过命令行管理，而这个通过图形界面管理。一般用来远程管理服务器。使用TCP的3389端口。</p>
+<h3 id="6-HTTP协议"><a href="#6-HTTP协议" class="headerlink" title="6  HTTP协议"></a>6  HTTP协议</h3><p>是用的最多的协议，用来访问网站的协议。使用TCP的80端口。</p>
+<p><strong>为何访问网站要用域名？</strong><br>网站的标识有IP地址、端口和域名。因此访问网站时，为了区分不同的网站，可以使用不同的IP地址、不同的端口或不同的主机头（域名）。<br>同一个服务器上如果有好几个网站，这些网站如果都使用一个服务器IP地址，都使用80端口，会有冲突。解决方法一是给服务器多加几个IP地址，一个网站用一个；二是给不同网站用不同的端口号，不要都用80端口。然而这两种方式都不方便。如果服务器只有一个地址，并且端口号只想用80，那么可以在服务器设置网站的访问方式，设置成只能用域名来访问。但是用域名访问，还需要在DNS里把记录加上。目前网络上各大服务器中存储的成千上万的网站，都是用最后一种方法，用域名访问来实现的。</p>
+<p><strong>使用Web代理服务器访问网站</strong><br>访问网站时不直接访问，而是先访问代理服务器，代理服务器去找目标网站，然后再把得到的网站返回给请求计算机。</p>
+<p>好处：<br>a.节省内网访问Internet的带宽，加快上网速度。注意：别傻逼地用国外的代理上国内的网站，那得慢死！<br>b.通过Web代理绕过防火墙。翻墙软件就是使用国外的代理来上网的，能避免国内路由器的封锁；<br>c.避免追踪。如果在网上发帖子，不想让别人查到自己的地址，那就用代理在网上发帖子。ISP那边的记录，只能查到是代理在发帖子，查不到自己这里。<br>d.不用配网关（要上网的电脑和代理服务器在一个网段）、不用配DNS也能上网。<br>应用：在一个网段的计算机里，只要有一台计算机能上网，其他计算机就可以通过这台能上网的计算机上网。做法是将这台能上网的计算机设置成代理服务器，其他计算机指向它。</p>
+<h3 id="7-电子邮件服务"><a href="#7-电子邮件服务" class="headerlink" title="7  电子邮件服务"></a>7  电子邮件服务</h3><p>发送邮件的协议：SMTP使用TCP的25端口<br>读取邮件的协议：POP3 使用TCP的110端口和 IMAP使用TCP的143端口<br>收发邮件的过程如下：</p>
+<p>a.发件人调用PC机中的用户代理撰写和编辑要发送的邮件。<br>b.发件人的用户代理把邮件用SMTP协议发给发送方邮件服务器。<br>c.SMTP服务器把邮件临时存放在邮件缓存队列中，等待发送。<br>d.发送方邮件服务器的SMTP客户与接收方邮件服务器的SMTP服务器建立TCP连接，然后就把邮件缓存队列中的邮件依次发送出去。<br>e.运行在接收方邮件服务器中的SMTP服务器进程收到邮件后，把邮件放入收件人的用户邮箱中，等待收件人进行读取。<br>f.收件人在打算收信时，就运行PC机中的用户代理，使用POP3（或IMAP）协议读取发送给自己的邮件。</p>
+<p><strong>基于万维网的电子邮件</strong></p>
+<p>电子邮件从 A 发送到网易邮件服务器是使用 HTTP 协议。<br>两个邮件服务器之间的传送使用 SMTP。<br>邮件从新浪邮件服务器传送到 B 是使用 HTTP 协议。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)/" rel="next" title="计算机网络原理学习笔记(4)：网络层（下）">
+                <i class="fa fa-chevron-left"></i> 计算机网络原理学习笔记(4)：网络层（下）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)/" rel="prev" title="计算机网络原理学习笔记(6)">
+                计算机网络原理学习笔记(6) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="John Doe" />
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-域名系统和DNS"><span class="nav-number">1.</span> <span class="nav-text">1  域名系统和DNS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-DHCP服务"><span class="nav-number">2.</span> <span class="nav-text">2 DHCP服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-FTP文件传送服务"><span class="nav-number">3.</span> <span class="nav-text">3  FTP文件传送服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-FTP连接方式"><span class="nav-number">3.0.1.</span> <span class="nav-text">1 FTP连接方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-客户端选择数据连接的建立类型"><span class="nav-number">3.0.2.</span> <span class="nav-text">2 客户端选择数据连接的建立类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-FTP传输模式"><span class="nav-number">3.0.3.</span> <span class="nav-text">3 FTP传输模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-远程终端协议TELNET"><span class="nav-number">3.0.4.</span> <span class="nav-text">4  远程终端协议TELNET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-远程桌面协议RDP"><span class="nav-number">3.0.5.</span> <span class="nav-text">5  远程桌面协议RDP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-HTTP协议"><span class="nav-number">3.0.6.</span> <span class="nav-text">6  HTTP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-电子邮件服务"><span class="nav-number">3.0.7.</span> <span class="nav-text">7  电子邮件服务</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

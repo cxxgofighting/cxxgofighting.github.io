@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在有了局域网和广域网之后，将它们连接起来形成更大的网络也有助于信息的传递和共享，在这里路由器起到了至关重要的作用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络原理学习笔记(4)：网络层（下）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;18&#x2F;%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)&#x2F;index.html">
+<meta property="og:site_name" content="cxx">
+<meta property="og:description" content="在有了局域网和广域网之后，将它们连接起来形成更大的网络也有助于信息的传递和共享，在这里路由器起到了至关重要的作用。">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CWindows%5CSystem32%5C1576740521748.png">
+<meta property="article:published_time" content="2019-12-18T07:40:32.000Z">
+<meta property="article:modified_time" content="2019-12-19T07:49:29.635Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;.com&#x2F;&#x2F;C:%5CWindows%5CSystem32%5C1576740521748.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/18/计算机网络原理学习笔记(4)/"/>
+
+
+
+
+
+  <title>计算机网络原理学习笔记(4)：网络层（下） | cxx</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cxx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cxx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络原理学习笔记(4)：网络层（下）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-18T15:40:32+08:00">
+                2019-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在有了局域网和广域网之后，将它们连接起来形成更大的网络也有助于信息的传递和共享，在这里路由器起到了至关重要的作用。</p>
+<a id="more"></a>
+
+<h1 id="路由器的作用"><a href="#路由器的作用" class="headerlink" title="路由器的作用"></a>路由器的作用</h1><p>将网络互相连接起来要使用一些中间设备(或中间系统)，ISO的术语称之为中继(relay)系统，而在网络层的中继系统就是路由器。</p>
+<h1 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h1><p>网际协议IP是TCP／IP体系中两个最主要的协议之一。与IP协议配套使用的还有三个协议：</p>
+<ul>
+<li>地址解析协议ARP(Address Resolution Protocol)</li>
+<li>逆地址解析协议RARP(Reverse Address Resolution Protocol)</li>
+<li>因特网控制报文协议ICMP  (Internet Control Message  Protocol)</li>
+</ul>
+<p>因特网的IP地址分成为五类，即A类到E类。常用的A类、B类和C类地址都由网络号字段和主机号字段组成。</p>
+<ul>
+<li>A类地址的左边第一字节值: 1–127,例如 10.237.43.8</li>
+<li>B类地址的左边第一字节值: 128-191,例如 128.37.143.38</li>
+<li>C类地址的左边第一字节值: 192-223,例如 195.71.43.85</li>
+<li>D类地址是多播地址，主要留给因特网体系结构研究委员会IAB(Internet Architecture Board)使用。左边第一字节值:224-239,例如 230.138.43.85</li>
+<li>E类地址保留在今后使用。左边第一字节值:&gt;=240,例如 243.13.143.185</li>
+</ul>
+<p><img src="/.com//C:%5CWindows%5CSystem32%5C1576740521748.png" alt="1576740521748"></p>
+<p>给节点分配IP地址时，host-id（主机号）全0，全1都不可用。</p>
+<h2 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h2><p>DNS(Domain Name System)地址的转换：</p>
+<ul>
+<li>域名,例如<a href="http://www.intel.com，host-b" target="_blank" rel="noopener">www.intel.com，host-b</a></li>
+<li>域名服务器，放有许多“主机名字–&gt;IP地址”的映射表。</li>
+</ul>
+<p><strong>IP地址—&gt;硬件地址（MAC地址）</strong>的转换是由<strong>地址解析协议ARP（Address Resolution Protocol)</strong>来完成。</p>
+<p><strong>MAC地址—&gt;IP地址</strong>的转换是由<strong>逆地址解析协议RARP</strong>来完成。</p>
+<h2 id="IP数据报组成"><a href="#IP数据报组成" class="headerlink" title="IP数据报组成"></a>IP数据报组成</h2><ul>
+<li><p>首部长度（IHL）, 以4字节为单位。</p>
+</li>
+<li><p>服务类型</p>
+</li>
+<li><p>总长度（Total Length): 总长度指首部和数据之和的长度，单位为字节。</p>
+</li>
+<li><p>标识(Identification)</p>
+</li>
+<li><p>标志(flag) </p>
+<ul>
+<li>MF(More Fragment),MF=1即表示后面“还有分片”的数据报</li>
+<li>DF(Don‘t Fragment)，意思是“不能分片”</li>
+</ul>
+</li>
+<li><p>片偏移(Fragment Offset):以8个字节为偏移单位。</p>
+</li>
+<li><p>寿命(TTL)：寿命字段记为TTL(Time To Live)，最大255。</p>
+</li>
+<li><p>协议：UDP(17)，TCP(6)，ICMP(1)，GGP(3)，EGP(8)，IGP(9)，OSPF(89)，以及ISO的第四类运输协议TP4(29)。</p>
+</li>
+<li><p>首部检验和</p>
+</li>
+</ul>
+<h2 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h2><p><strong>子网掩码：</strong>是32bit的一个数,其中 “1”对应于网络号和子网号字段，而“0”对应于主机号字段。</p>
+<p><strong>A类IP地址</strong>，其对应的子网掩码默认值为 255.0.0.0 (0xFF000000)<br><strong>B类IP地址</strong>，其对应的子网掩码默认值为 255.255.0.0 (0xFFFF0000)<br><strong>C类IP地址</strong>，其对应的子网掩码默认值为 255.255.255.0 (0xFFFFFF00)。</p>
+<h2 id="因特网控制报文协议ICMP"><a href="#因特网控制报文协议ICMP" class="headerlink" title="因特网控制报文协议ICMP"></a>因特网控制报文协议ICMP</h2><p>ICMP允许主机或路由器报告差错情况和提供有关异常情况的报告。但ICMP不是高层协议，而是IP层的协议。</p>
+<p>ICMP报文可分为两种大类</p>
+<ul>
+<li>ICMP差错报文：用于报告差错。</li>
+<li>ICMP询问报文：用于查询及测量。</li>
+</ul>
+<h2 id="因特网的路由选择协议"><a href="#因特网的路由选择协议" class="headerlink" title="因特网的路由选择协议"></a>因特网的路由选择协议</h2><p>因特网就把路由选择协议划分为两大类，即：</p>
+<ul>
+<li>内部网关协议IGP(Interior Gateway Protocol): 即在一个自治系统内部使用的路由选择协议，如RIP，HELLO,OSPF协议。</li>
+<li>外部网关协议EGP(External Gateway Protocol)：例如BGP(Border Gateway Protocol )</li>
+</ul>
+<h3 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h3><p>RIP(Routing Information Protocol)是一个基于距离向量的分布式路由选择协议，同时它也是一种内部网关协议。</p>
+<p>RIP允许一个通路最多只能包含15个路由器（发送主机自身也算一个） 。因此“距离”的最大值为16时即相当于不可达。可见RIP只适用于小型互连网。</p>
+<p>RIP协议的缺点：</p>
+<ul>
+<li>RIP限制了网络的规模，它能使用的最大距离为15(不可达为16)。</li>
+<li>路由器之间交换的完整路由信息开销太大。 </li>
+<li>“坏消息传播得慢”，使许多更新过程的收敛时间过长。</li>
+</ul>
+<h3 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h3><p>开放最短通路优先OSPF(Open Shortest Path First)，它是一种分布式的链路状态协议(1ink state protocol)，而不是像RIP那样的距离向量协议。</p>
+<p>OSPF共有以下五种报文类型：</p>
+<ul>
+<li>类型1，Hello报文，用来发现和维持邻站的可达性。</li>
+<li>类型2，Database Description报文，向邻站给出自己的链路状态数据库中的所有链路状态项目的摘要信息。</li>
+<li>类型3，Link State Request报文，向对方请求发送某些链路状态项目的详细信息。</li>
+<li>类型4，Link State Update报文，用洪泛法向全网更新链路状态。</li>
+<li>类型5，Link State Acknowledgment报文，对链路更新报文的确认。</li>
+</ul>
+<p><strong>特点</strong></p>
+<ul>
+<li>没有“坏消息传播得慢”的问题，据统计，其响应网络变化的时间小于100ms。    </li>
+<li>具有负荷平衡的功能：如在同一费用下，到某个目的站有多条路由，则OSPF协议能使负荷平均地分配给每一个路由。而RIP协议对每一个目的站只算出一条路由。</li>
+<li>当互连网络的规模逐渐变大时，OSPF允许进一步地将互连网划分成一些区域(area)。每一个区域内的拓扑结构对区域外部是不可见的。<ul>
+<li>一个AS由多个区域（Area)组成，其中有一个根区域（主干区域）。</li>
+<li>一个区域由多个网络组成。</li>
+</ul>
+</li>
+<li>路由器之间的信息交换必须经过鉴别(authentication)，具有较好的安全性。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)/" rel="next" title="计算机网络原理学习笔记（3）：网络层（上）">
+                <i class="fa fa-chevron-left"></i> 计算机网络原理学习笔记（3）：网络层（上）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)/" rel="prev" title="计算机网络原理学习笔记(5):应用层">
+                计算机网络原理学习笔记(5):应用层 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="John Doe" />
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#路由器的作用"><span class="nav-number">1.</span> <span class="nav-text">路由器的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP协议"><span class="nav-number">2.</span> <span class="nav-text">IP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域名系统"><span class="nav-number">2.1.</span> <span class="nav-text">域名系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP数据报组成"><span class="nav-number">2.2.</span> <span class="nav-text">IP数据报组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子网掩码"><span class="nav-number">2.3.</span> <span class="nav-text">子网掩码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#因特网控制报文协议ICMP"><span class="nav-number">2.4.</span> <span class="nav-text">因特网控制报文协议ICMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#因特网的路由选择协议"><span class="nav-number">2.5.</span> <span class="nav-text">因特网的路由选择协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RIP"><span class="nav-number">2.5.1.</span> <span class="nav-text">RIP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSPF"><span class="nav-number">2.5.2.</span> <span class="nav-text">OSPF</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
